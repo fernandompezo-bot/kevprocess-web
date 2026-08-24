@@ -56,7 +56,7 @@ const solutionsData: Solution[] = [
     title: "Soporte 24/7", 
     desc: "Monitoreo remoto, diagnóstico, continuidad operacional y acompañamiento técnico posterior a la puesta en servicio.",
     longDesc: "Ofrecemos un servicio permanente de monitoreo, diagnóstico y asistencia técnica remota para responder ágilmente ante cualquier contingencia. Nos convertimos en una extensión de tu equipo técnico.",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+    image: "/soporte.jpg",
     features: ["Monitoreo remoto de variables críticas", "Soporte telefónico y por videollamada 24/7", "Diagnóstico temprano de fallas de control", "Planes de mantenimiento preventivo y correctivo"]
   },
   { 
