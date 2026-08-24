@@ -48,7 +48,7 @@ const solutionsData: Solution[] = [
     title: "Tableros y Energía", 
     desc: "Integración y construcción de tableros de control, fuerza, variadores, medición y eficiencia energética.",
     longDesc: "Diseñamos e integramos armarios eléctricos y tableros de control bajo estrictas normas de seguridad. Ofrecemos soluciones enfocadas en la eficiencia energética y la reducción de costos operativos.",
-    image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80",
+    image: "/tableros.jpg",
     features: ["Tableros de fuerza y control (PLC)", "Sistemas de distribución y fuerza", "Variadores de frecuencia y partidores suaves", "Monitoreo y medición de consumo eléctrico"]
   },
   { 
