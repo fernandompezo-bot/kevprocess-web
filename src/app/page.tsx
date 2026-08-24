@@ -1,13 +1,69 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { 
   ShieldCheck, Settings, TrendingUp, Lightbulb, 
   Cpu, Activity, Network, Zap, Headset, 
   Tractor, Fish, TreePine, Factory, ArrowRight,
-  MapPin, Globe, Mail, CheckCircle2, ChevronRight
+  MapPin, Globe, Mail, CheckCircle2, ChevronRight, X
 } from 'lucide-react';
 
+interface Solution {
+  icon: React.ComponentType<any>;
+  title: string;
+  desc: string;
+  longDesc: string;
+  image: string;
+  features: string[];
+}
+
+const solutionsData: Solution[] = [
+  { 
+    icon: Cpu, 
+    title: "Ingeniería y Automatización", 
+    desc: "Desarrollo de ingeniería, control de procesos, PLC, HMI, instrumentación y puesta en marcha.",
+    longDesc: "Desarrollamos proyectos de ingeniería llave en mano desde la fase conceptual hasta la puesta en marcha. Diseñamos arquitecturas de control robustas y escalables para optimizar tus procesos productivos y asegurar la continuidad operacional.",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
+    features: ["Programación de PLC (Siemens, Rockwell, Schneider)", "Desarrollo de HMI a medida", "Diseño de redes de control industrial", "Puestas en marcha en terreno y soporte continuo"]
+  },
+  { 
+    icon: Activity, 
+    title: "SCADA y Digitalización", 
+    desc: "Supervisión, historización, reportabilidad, dashboards, integración OT/IT y VPC para SCADAs en la nube.",
+    longDesc: "Implementamos sistemas de supervisión y adquisición de datos de última generación. Transformamos variables de planta en tableros de información estratégica en tiempo real, facilitando la toma de decisiones basada en datos.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+    features: ["Sistemas SCADA locales e híbridos (WinCC, Ignition, atvise)", "Dashboards KPIs en tiempo real", "Historización y base de datos de proceso", "Migración de SCADA tradicionales a la nube (VPC)"]
+  },
+  { 
+    icon: Network, 
+    title: "Integración y Comunicaciones", 
+    desc: "Integración de equipos, redes industriales, OPC UA, bases de datos y conexión con sistemas corporativos.",
+    longDesc: "Conectamos el mundo operativo (OT) con el corporativo (IT). Nos aseguramos de que toda tu maquinaria e instrumentación hable un mismo lenguaje y entregue información valiosa para tus sistemas de gestión (ERP, SAP, MES).",
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80",
+    features: ["Integración mediante OPC UA y Modbus", "Configuración de redes industriales seguras", "Conexión de bases de datos de proceso", "Protocolos de ciberseguridad industrial"]
+  },
+  { 
+    icon: Zap, 
+    title: "Tableros y Energía", 
+    desc: "Integración y construcción de tableros de control, fuerza, variadores, medición y eficiencia energética.",
+    longDesc: "Diseñamos e integramos armarios eléctricos y tableros de control bajo estrictas normas de seguridad. Ofrecemos soluciones enfocadas en la eficiencia energética y la reducción de costos operativos.",
+    image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=800&q=80",
+    features: ["Tableros de fuerza y control (PLC)", "Sistemas de distribución y fuerza", "Variadores de frecuencia y partidores suaves", "Monitoreo y medición de consumo eléctrico"]
+  },
+  { 
+    icon: Headset, 
+    title: "Soporte 24/7", 
+    desc: "Monitoreo remoto, diagnóstico, continuidad operacional y acompañamiento técnico posterior a la puesta en servicio.",
+    longDesc: "Ofrecemos un servicio permanente de monitoreo, diagnóstico y asistencia técnica remota para responder ágilmente ante cualquier contingencia. Nos convertimos en una extensión de tu equipo técnico.",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
+    features: ["Monitoreo remoto de variables críticas", "Soporte telefónico y por videollamada 24/7", "Diagnóstico temprano de fallas de control", "Planes de mantenimiento preventivo y correctivo"]
+  }
+];
+
 export default function Home() {
+  const [selectedSolution, setSelectedSolution] = useState<Solution | null>(null);
+
   return (
     <main className="flex flex-col min-h-screen bg-white">
       
@@ -140,20 +196,20 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { icon: Cpu, title: "Ingeniería y Automatización", desc: "Desarrollo de ingeniería, control de procesos, PLC, HMI, instrumentación y puesta en marcha." },
-              { icon: Activity, title: "SCADA y Digitalización", desc: "Supervisión, historización, reportabilidad, dashboards, integración OT/IT y VPC para SCADAs en la nube." },
-              { icon: Network, title: "Integración y Comunicaciones", desc: "Integración de equipos, redes industriales, OPC UA, bases de datos y conexión con sistemas corporativos." },
-              { icon: Zap, title: "Tableros y Energía", desc: "Integración y construcción de tableros de control, fuerza, variadores, medición y eficiencia energética." },
-              { icon: Headset, title: "Soporte 24/7", desc: "Monitoreo remoto, diagnóstico, continuidad operacional y acompañamiento técnico posterior a la puesta en servicio." },
-            ].map((sol, i) => (
-              <div key={i} className="group p-8 bg-white border border-slate-200 rounded shadow-sm hover:shadow-xl hover:border-cyan/30 transition-all duration-300">
-                <div className="w-14 h-14 bg-slate-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-cyan group-hover:text-white transition-colors text-cyan">
-                  <sol.icon size={28} strokeWidth={1.5} />
+            {solutionsData.map((sol, i) => (
+              <div 
+                key={i} 
+                onClick={() => setSelectedSolution(sol)}
+                className="group p-8 bg-white border border-slate-200 rounded shadow-sm hover:shadow-xl hover:border-cyan/30 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-14 h-14 bg-slate-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-cyan group-hover:text-white transition-colors text-cyan">
+                    <sol.icon size={28} strokeWidth={1.5} />
+                  </div>
+                  <h3 className="text-xl font-bold text-navy mb-3">{sol.title}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed mb-6">{sol.desc}</p>
                 </div>
-                <h3 className="text-xl font-bold text-navy mb-3">{sol.title}</h3>
-                <p className="text-slate-600 text-sm leading-relaxed mb-6">{sol.desc}</p>
-                <div className="mt-auto flex items-center text-sm font-bold text-cyan opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="flex items-center text-sm font-bold text-cyan opacity-0 group-hover:opacity-100 transition-opacity">
                   Saber más <ChevronRight size={16} className="ml-1" />
                 </div>
               </div>
@@ -341,6 +397,79 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* SOLUTION MODAL */}
+      {selectedSolution && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy/60 backdrop-blur-sm">
+          <div className="relative w-full max-w-4xl bg-white rounded shadow-2xl overflow-hidden border border-slate-100 flex flex-col md:flex-row max-h-[90vh] md:max-h-[85vh]">
+            
+            {/* Close Button */}
+            <button 
+              onClick={() => setSelectedSolution(null)}
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/80 backdrop-blur shadow-sm hover:bg-slate-100 text-slate-500 hover:text-navy transition-colors border border-slate-200"
+            >
+              <X size={20} />
+            </button>
+
+            {/* Left side: Image */}
+            <div className="relative w-full md:w-1/2 h-48 md:h-auto min-h-[200px] bg-slate-100 shrink-0">
+              <img 
+                src={selectedSolution.image} 
+                alt={selectedSolution.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent"></div>
+            </div>
+
+            {/* Right side: Content */}
+            <div className="p-8 md:p-10 flex-1 overflow-y-auto flex flex-col justify-between">
+              <div>
+                <div className="inline-flex items-center gap-2 text-cyan font-bold text-xs uppercase tracking-wider mb-3">
+                  <span className="p-1 rounded bg-cyan/10">
+                    {React.createElement(selectedSolution.icon, { size: 14 })}
+                  </span>
+                  Solución Industrial
+                </div>
+                <h3 className="text-2xl md:text-3xl font-extrabold text-navy mb-4">
+                  {selectedSolution.title}
+                </h3>
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                  {selectedSolution.longDesc}
+                </p>
+
+                <h4 className="text-xs font-bold text-navy uppercase tracking-widest mb-3">
+                  Características principales
+                </h4>
+                <ul className="space-y-2 mb-6">
+                  {selectedSolution.features.map((feat, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-slate-600 text-sm">
+                      <CheckCircle2 size={16} className="text-emerald shrink-0 mt-0.5" />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row justify-end gap-2">
+                <button 
+                  onClick={() => setSelectedSolution(null)}
+                  className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded transition-colors text-sm"
+                >
+                  Cerrar
+                </button>
+                <a 
+                  href="#contacto" 
+                  onClick={() => setSelectedSolution(null)}
+                  className="px-5 py-2.5 bg-cyan hover:bg-cyan/90 text-navy font-bold rounded transition-colors text-center text-sm"
+                >
+                  Cotizar Solución
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
     </main>
   );
 }
