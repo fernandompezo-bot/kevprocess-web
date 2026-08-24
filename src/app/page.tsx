@@ -64,7 +64,7 @@ const solutionsData: Solution[] = [
     title: "Control de movimiento en servomotores", 
     desc: "Expertos en control y sincronización de ejes y accionamientos.",
     longDesc: "Diseñamos y parametrizamos sistemas de control de movimiento (Motion Control) de alta precisión. Sincronizamos ejes para procesos complejos de embalaje, corte al vuelo, posicionamiento rápido y coordinación multi-axial.",
-    image: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?auto=format&fit=crop&w=800&q=80",
+    image: "/servomotor.jpg",
     features: ["Sincronización de ejes (Electronic Camming, Gearing)", "Parametrización de servo-accionamientos (Siemens, Rockwell, Yaskawa)", "Sistemas de corte al vuelo y posicionamiento rápido", "Control de torque, velocidad y posición con lazo cerrado"]
   }
 ];
