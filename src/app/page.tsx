@@ -24,7 +24,7 @@ const solutionsData: Solution[] = [
     title: "Ingeniería y Automatización", 
     desc: "Desarrollo de ingeniería, control de procesos, PLC, HMI, instrumentación y puesta en marcha.",
     longDesc: "Desarrollamos proyectos de ingeniería llave en mano desde la fase conceptual hasta la puesta en marcha. Diseñamos arquitecturas de control robustas y escalables para optimizar tus procesos productivos y asegurar la continuidad operacional.",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
+    image: "/ingenieria.jpg",
     features: ["Programación de PLC (Siemens, Rockwell, Schneider)", "Desarrollo de HMI a medida", "Diseño de redes de control industrial", "Puestas en marcha en terreno y soporte continuo"]
   },
   { 
