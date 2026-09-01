@@ -99,75 +99,51 @@ export default function Home() {
         </div>
       </header>
 
-      {/* HERO SECTION - Enterprise Software Style */}
-      <section className="relative pt-24 pb-20 md:pt-32 md:pb-32 px-6 overflow-hidden bg-slate-50">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div className="z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan/10 text-cyan font-bold text-xs mb-6 uppercase tracking-widest">
-              <span className="w-2 h-2 rounded-full bg-cyan animate-pulse"></span>
-              Automation & Process
-            </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-navy">
-              Soluciones industriales para <span className="text-cyan">continuidad operacional.</span>
+      {/* HERO SECTION - Modern Isometric Presentation */}
+      <section className="relative pt-12 pb-16 md:pt-16 md:pb-24 px-6 overflow-hidden bg-white">
+        {/* Subtle background matrix/dot pattern */}
+        <div className="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_70%_60%_at_70%_50%,#000_60%,transparent_100%)]"></div>
+
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-8 lg:gap-8 items-center relative z-10">
+          
+          {/* Left Column: Copy & Actions */}
+          <div className="lg:col-span-5 text-left pt-2 lg:pt-0">
+            <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.12] text-[#0A192F] tracking-tight mb-6">
+              Soluciones industriales para continuidad operacional.
             </h1>
-            <p className="text-lg text-slate-600 mb-8 max-w-xl leading-relaxed">
-              Supervisión, integración y modernización tecnológica. Integramos ingeniería, automatización y digitalización para mejorar de manera medible el desempeño de tu planta.
+            <p className="text-base sm:text-lg text-slate-600 mb-8 max-w-lg leading-relaxed font-normal">
+              Supervisión, integración y modernización tecnológica. Integramos ingeniería, automatización y digitalización para asegurar la continuidad operacional y el óptimo desempeño de planta.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <a href="#capacidades" className="flex items-center gap-2 px-8 py-4 bg-emerald text-white font-bold rounded shadow-lg shadow-emerald/20 hover:bg-emerald/90 transition-all">
-                Nuestras Soluciones <ArrowRight size={18} />
+            <div className="flex flex-wrap items-center gap-4">
+              <a 
+                href="#capacidades" 
+                className="px-6 py-3.5 bg-[#1D6A6E] hover:bg-[#155457] text-white font-bold rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-center text-sm sm:text-base"
+              >
+                Nuestras Soluciones
               </a>
-              <a href="#contacto" className="flex items-center gap-2 px-8 py-4 bg-white border border-slate-300 text-navy font-bold rounded hover:border-navy transition-all shadow-sm">
+              <a 
+                href="#contacto" 
+                className="px-7 py-3.5 bg-white border border-[#1D6A6E] text-[#1D6A6E] hover:bg-[#1D6A6E]/5 font-bold rounded-lg shadow-sm hover:border-[#155457] hover:text-[#155457] transition-all duration-200 text-center text-sm sm:text-base"
+              >
                 Hablemos
               </a>
             </div>
           </div>
           
-          <div className="hidden md:block relative z-10">
-            {/* Minimalist abstract graphical representation of process/software */}
-            <div className="bg-white rounded-xl shadow-2xl shadow-slate-200/50 border border-slate-100 p-6 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-cyan/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
-              
-              <div className="flex items-center gap-3 border-b border-slate-100 pb-4 mb-6">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-slate-200"></div>
-                  <div className="w-3 h-3 rounded-full bg-slate-200"></div>
-                  <div className="w-3 h-3 rounded-full bg-slate-200"></div>
-                </div>
-                <div className="text-xs font-semibold text-slate-400 bg-slate-50 px-2 py-1 rounded">kevprocess-dashboard</div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                <div className="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                  <div className="flex items-center justify-between mb-3">
-                    <Activity className="text-cyan" size={20} />
-                    <span className="text-xs font-bold text-emerald">+99.9%</span>
-                  </div>
-                  <div className="text-2xl font-bold text-navy mb-1">24/7</div>
-                  <div className="text-xs text-slate-500">Monitoreo Remoto</div>
-                </div>
-                <div className="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                  <div className="flex items-center justify-between mb-3">
-                    <Settings className="text-cyan" size={20} />
-                    <span className="text-xs font-bold text-cyan">SCADA</span>
-                  </div>
-                  <div className="text-2xl font-bold text-navy mb-1">OT/IT</div>
-                  <div className="text-xs text-slate-500">Integración de Sistemas</div>
-                </div>
-              </div>
-
-              <div className="bg-slate-50 p-4 rounded-lg border border-slate-100">
-                <div className="flex justify-between items-end mb-4">
-                  <div className="text-xs text-slate-500 font-semibold uppercase">Eficiencia de Planta</div>
-                  <div className="text-cyan text-sm font-bold">Optimizado</div>
-                </div>
-                <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden flex">
-                  <div className="h-full bg-emerald w-1/3"></div>
-                  <div className="h-full bg-cyan w-1/2"></div>
-                </div>
-              </div>
+          {/* Right Column: 3D Isometric Screen Cascade */}
+          <div className="lg:col-span-7 flex justify-center lg:justify-end relative">
+            <div className="relative w-full max-w-[650px] transform hover:scale-[1.01] transition-transform duration-500 ease-out">
+              <Image 
+                src="/hero-screens.png" 
+                alt="Plataforma de visualización, monitoreo 24/7 e integración OT/IT Kevprocess" 
+                width={614} 
+                height={532} 
+                priority 
+                className="w-full h-auto object-contain select-none"
+              />
             </div>
           </div>
+
         </div>
       </section>
 
