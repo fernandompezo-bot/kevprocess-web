@@ -5,10 +5,34 @@ import Image from 'next/image';
 import { 
   ShieldCheck, Settings, TrendingUp, Lightbulb, 
   Cpu, Activity, Network, Zap, Headset, 
-  Tractor, Fish, TreePine, Factory, ArrowRight,
+  Fish, TreePine, Factory, ArrowRight,
   MapPin, Globe, Mail, CheckCircle2, ChevronRight, X, RotateCw,
   Loader2, AlertCircle
 } from 'lucide-react';
+
+function MiningTruck({ size = 24, className = '', strokeWidth = 2, ...props }: { size?: number | string; className?: string; strokeWidth?: number | string; [key: string]: any }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      {...props}
+    >
+      <path d="M2.5 9 5 14.5h9.5l1-7h4L22 4H8.5L2.5 9z" />
+      <path d="M14.5 14.5h4v-3.5h-2.5" />
+      <line x1="18.5" y1="14.5" x2="20.5" y2="14.5" />
+      <circle cx="6.5" cy="18.5" r="2.75" />
+      <circle cx="16.5" cy="18.5" r="2.75" />
+      <line x1="9.25" y1="18.5" x2="13.75" y2="18.5" />
+    </svg>
+  );
+}
 
 interface Solution {
   icon: React.ComponentType<any>;
@@ -265,7 +289,7 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { icon: Tractor, title: "Minería de Hierro" },
+              { icon: MiningTruck, title: "Minería" },
               { icon: Fish, title: "Alimentos y Pesquero" },
               { icon: TreePine, title: "Maderero" },
               { icon: Factory, title: "Manufactura" }
