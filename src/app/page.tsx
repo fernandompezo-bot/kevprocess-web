@@ -299,7 +299,7 @@ export default function Home() {
             <div>
               <h3 className="text-xs uppercase tracking-widest text-slate-400 font-bold mb-6">Partners Tecnológicos</h3>
               <div className="flex flex-wrap gap-3">
-                {['SIEMENS', 'Schneider Electric', 'AVEVA', 'PHOENIX CONTACT', 'atvise', 'RITTAL', 'Vester Business'].map(partner => (
+                {['SIEMENS', 'SCHNEIDER ELECTRIC', 'AVEVA', 'PHOENIX CONTACT', 'DELTA ELECTRONICS', 'ATVISE', 'RITTAL', 'VESTER BUSINESS'].map(partner => (
                   <span key={partner} className="px-4 py-2 border border-slate-200 rounded text-sm text-slate-600 font-medium bg-slate-50">{partner}</span>
                 ))}
               </div>
