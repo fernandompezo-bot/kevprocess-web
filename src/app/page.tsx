@@ -88,23 +88,24 @@ export default function Home() {
     setFormFeedback('');
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/contacto@kevprocess.com', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          Nombre: formData.name,
-          Email: formData.email,
-          Mensaje: formData.message,
-          _subject: `Nuevo contacto desde www.kevprocess.com - ${formData.name}`,
-          _template: 'table'
+          access_key: '1b357ed3-4c91-4868-a132-19d96c7bf6fd',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Nuevo contacto desde www.kevprocess.com - ${formData.name}`,
+          from_name: 'Web Kevprocess'
         })
       });
 
       const data = await response.json();
-      if (response.ok || data.success === 'true' || data.success === true) {
+      if (response.ok && data.success) {
         setFormStatus('success');
         setFormData({ name: '', email: '', message: '' });
       } else {
