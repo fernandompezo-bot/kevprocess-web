@@ -6,7 +6,8 @@ import {
   ShieldCheck, Settings, TrendingUp, Lightbulb, 
   Cpu, Activity, Network, Zap, Headset, 
   Tractor, Fish, TreePine, Factory, ArrowRight,
-  MapPin, Globe, Mail, CheckCircle2, ChevronRight, X, RotateCw
+  MapPin, Globe, Mail, CheckCircle2, ChevronRight, X, RotateCw,
+  Loader2, AlertCircle
 } from 'lucide-react';
 
 interface Solution {
@@ -71,6 +72,50 @@ const solutionsData: Solution[] = [
 
 export default function Home() {
   const [selectedSolution, setSelectedSolution] = useState<Solution | null>(null);
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [formFeedback, setFormFeedback] = useState('');
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      setFormStatus('error');
+      setFormFeedback('Por favor completa todos los campos requeridos.');
+      return;
+    }
+
+    setFormStatus('loading');
+    setFormFeedback('');
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/contacto@kevprocess.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          Nombre: formData.name,
+          Email: formData.email,
+          Mensaje: formData.message,
+          _subject: `Nuevo contacto desde www.kevprocess.com - ${formData.name}`,
+          _template: 'table'
+        })
+      });
+
+      const data = await response.json();
+      if (response.ok || data.success === 'true' || data.success === true) {
+        setFormStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error(data.message || 'Error al procesar el mensaje');
+      }
+    } catch (err) {
+      console.error(err);
+      setFormStatus('error');
+      setFormFeedback('No se pudo enviar automáticamente en este momento. Por favor escríbenos directamente a contacto@kevprocess.com');
+    }
+  };
 
   return (
     <main className="flex flex-col min-h-screen bg-white">
@@ -350,26 +395,90 @@ export default function Home() {
           </div>
           
           <div className="bg-navy-light p-8 rounded border border-white/10">
-            <h3 className="text-2xl font-bold mb-6">Iniciemos un proyecto</h3>
-            <form className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-xs text-slate-400 font-semibold uppercase">Nombre</label>
-                  <input type="text" className="w-full bg-navy border border-white/10 rounded px-4 py-3 focus:outline-none focus:border-cyan transition-colors" placeholder="Tu nombre" />
+            <h3 className="text-2xl font-bold mb-2">Iniciemos un proyecto</h3>
+            <p className="text-slate-400 text-sm mb-6">
+              Completa el formulario y te responderemos a la brevedad.
+            </p>
+
+            {formStatus === 'success' ? (
+              <div className="bg-emerald/10 border border-emerald/30 p-6 rounded-lg text-center space-y-3">
+                <CheckCircle2 className="text-emerald mx-auto" size={44} />
+                <h4 className="text-lg font-bold text-white">¡Mensaje enviado con éxito!</h4>
+                <p className="text-slate-300 text-sm">
+                  Hemos recibido tu consulta. Nos pondremos en contacto contigo a la brevedad.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setFormStatus('idle')}
+                  className="text-xs text-cyan hover:underline pt-2 font-semibold inline-block"
+                >
+                  Enviar otro mensaje
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleFormSubmit} className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-xs text-slate-400 font-semibold uppercase">Nombre</label>
+                    <input 
+                      type="text" 
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full bg-navy border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-cyan transition-colors placeholder:text-slate-500" 
+                      placeholder="Tu nombre" 
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs text-slate-400 font-semibold uppercase">Email</label>
+                    <input 
+                      type="email" 
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full bg-navy border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-cyan transition-colors placeholder:text-slate-500" 
+                      placeholder="tu@empresa.com" 
+                    />
+                  </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs text-slate-400 font-semibold uppercase">Email</label>
-                  <input type="email" className="w-full bg-navy border border-white/10 rounded px-4 py-3 focus:outline-none focus:border-cyan transition-colors" placeholder="tu@empresa.com" />
+                  <label className="text-xs text-slate-400 font-semibold uppercase">Mensaje</label>
+                  <textarea 
+                    rows={4} 
+                    required
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full bg-navy border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-cyan transition-colors placeholder:text-slate-500" 
+                    placeholder="¿En qué te podemos ayudar?"
+                  ></textarea>
                 </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs text-slate-400 font-semibold uppercase">Mensaje</label>
-                <textarea rows={4} className="w-full bg-navy border border-white/10 rounded px-4 py-3 focus:outline-none focus:border-cyan transition-colors" placeholder="¿En qué te podemos ayudar?"></textarea>
-              </div>
-              <button type="button" className="w-full bg-cyan hover:bg-emerald text-navy font-bold py-3 rounded transition-colors flex justify-center items-center gap-2">
-                Enviar Mensaje <ArrowRight size={18} />
-              </button>
-            </form>
+
+                {formStatus === 'error' && (
+                  <div className="flex items-center gap-2 text-rose-300 text-xs bg-rose-500/10 border border-rose-500/30 p-3 rounded">
+                    <AlertCircle size={16} className="shrink-0 text-rose-400" />
+                    <span>{formFeedback}</span>
+                  </div>
+                )}
+
+                <button 
+                  type="submit" 
+                  disabled={formStatus === 'loading'}
+                  className="w-full bg-cyan hover:bg-emerald text-navy font-bold py-3 rounded transition-colors flex justify-center items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {formStatus === 'loading' ? (
+                    <>
+                      <Loader2 size={18} className="animate-spin" />
+                      <span>Enviando mensaje...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Enviar Mensaje</span>
+                      <ArrowRight size={18} />
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
           </div>
         </div>
         
