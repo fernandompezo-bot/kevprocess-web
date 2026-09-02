@@ -182,8 +182,8 @@ export default function Home() {
               <Image 
                 src="/hero-screens.png" 
                 alt="Plataforma de visualización, monitoreo 24/7 e integración OT/IT Kevprocess" 
-                width={614} 
-                height={532} 
+                width={650} 
+                height={534} 
                 priority 
                 className="w-full h-auto object-contain select-none"
               />
