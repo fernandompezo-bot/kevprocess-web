@@ -10,6 +10,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Kevprocess | Automation & Process",
   description: "Soluciones industriales para continuidad operacional, supervisión, integración y modernización tecnológica.",
+  icons: {
+    icon: [
+      { url: '/icon.png' },
+      { url: '/favicon.ico' }
+    ],
+    apple: '/icon.png',
+  },
 };
 
 export default function RootLayout({
