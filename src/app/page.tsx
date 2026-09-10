@@ -393,11 +393,11 @@ export default function Home() {
           <div>
             <div className="flex items-center mb-8">
               <Image 
-                src="/logo.png" 
+                src="/v43.png" 
                 alt="Kevprocess Logo" 
                 width={240} 
-                height={55} 
-                className="h-12 w-auto object-contain"
+                height={70} 
+                className="h-14 w-auto object-contain"
               />
             </div>
             <p className="text-slate-300 mb-8 max-w-sm">
