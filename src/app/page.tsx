@@ -7,7 +7,7 @@ import {
   Cpu, Activity, Network, Zap, Headset, 
   Fish, TreePine, Factory, ArrowRight,
   MapPin, Globe, Mail, CheckCircle2, ChevronRight, X, RotateCw,
-  Loader2, AlertCircle
+  Loader2, AlertCircle, Wifi, Utensils, Layers
 } from 'lucide-react';
 
 function MiningTruck({ size = 24, className = '', strokeWidth = 2, ...props }: { size?: number | string; className?: string; strokeWidth?: number | string; [key: string]: any }) {
@@ -94,8 +94,138 @@ const solutionsData: Solution[] = [
   }
 ];
 
+interface ExperienceCase {
+  num: string;
+  tabLabel: string;
+  title: string;
+  category: string;
+  icon: React.ComponentType<any>;
+  desc: string;
+  items: string[];
+  techTags: string[];
+}
+
+const experienceCasesData: ExperienceCase[] = [
+  {
+    num: "01",
+    tabLabel: "Pesquera",
+    title: "Experiencia Pesquera",
+    category: "Industria Pesquera & Harina de Pescado",
+    icon: Fish,
+    desc: "Modernización tecnológica integral de procesos continuos, control térmico de frío/calderas y supervisión SCADA en plantas y pontones.",
+    items: [
+      "Modernizaciones tecnológicas completas en Decanters y Separadoras",
+      "Sistema de recepción pescados pontón, bombas vacío y presión, almacenaje y frío",
+      "SCADA de control de Calderas",
+      "Control de flujo de dosificación de pesca Posicionadores eléctricos Concens",
+      "Control en sistemas de frío en salas de máquinas, túneles y cámaras de frío",
+      "Condensadores evaporativos",
+      "Control de movimiento de pallets y paletizado automático",
+      "Control de transporte de cajas de consumo humano, congelados",
+      "SCADA gestión de agua potable y RILES",
+      "Modernización de sistemas de control y SCADA en plantas de harina de pescado"
+    ],
+    techTags: ["Siemens WinCC", "Decanters & Separadoras", "Concens", "SCADA RILES & Calderas", "Sistemas de Frío"]
+  },
+  {
+    num: "02",
+    tabLabel: "Minería",
+    title: "Experiencia Minera",
+    category: "Minería & Procesos Críticos",
+    icon: MiningTruck,
+    desc: "Ingeniería de detalle, integración DCS/SCADA y monitoreo remoto de activos en operaciones mineras de alta criticidad.",
+    items: [
+      "Desarrollo ingeniería conceptual, básica y detalle",
+      "Monitoreo y soporte remoto de automatización en plantas, puertos, correas transportadoras, concentraductos, molinos, espesadores de cola, etc.",
+      "Integración de sistemas de automatización (PLC, HMI, SCADA) con sistemas de control avanzado",
+      "Mejoras continuas en lógica de procesos críticos",
+      "Modificaciones y mejoras en DCS (PCS7 de Siemens)",
+      "Experiencia en desarrollos de sistemas de control Schneider, Phoenix Contact, Rockwell y Siemens",
+      "Fabricación y puesta en marcha de tableros de accionamiento, partidores, variadores de frecuencia, relés inteligentes"
+    ],
+    techTags: ["Siemens PCS7", "Rockwell Automation", "Schneider Electric", "Phoenix Contact", "Monitoreo Remoto OT"]
+  },
+  {
+    num: "03",
+    tabLabel: "Conectividad",
+    title: "Conectividad Industrial",
+    category: "Redes Industriales & Convergencia OT/IT",
+    icon: Network,
+    desc: "Diseño de infraestructura de redes OT, buses de campo de alta velocidad y desarrollo de pasarelas de integración con ERP/MES.",
+    items: [
+      "Vasta experiencia en sistemas con buses de campo Profinet, EtherCAT, Modbus y Ethernet/IP",
+      "Implementaciones completas de sistemas OPC multimarca, redundantes y multiprotocolo",
+      "Desarrollo de APIs para conectividad entre sistemas MES, SAP con plataformas de automatización",
+      "Diseño de infraestructura de redes industriales (Especialistas en redes OT)",
+      "Convergencia entre redes IT/OT"
+    ],
+    techTags: ["Profinet · EtherCAT · Modbus", "OPC UA Multimarca", "APIs MES & SAP", "Especialistas Redes OT", "Convergencia IT/OT"]
+  },
+  {
+    num: "04",
+    tabLabel: "Sistemas IIoT",
+    title: "Comunicación Sistemas IIoT",
+    category: "Telemetría & Monitoreo Inteligente",
+    icon: Wifi,
+    desc: "Arquitecturas cloud y satelitales para captura, centralización y análisis de datos operacionales en tiempo real.",
+    items: [
+      "Dashboard y reportabilidad de producción y mantenimiento (OEE, Energía, consumo materias primas, etc.)",
+      "Monitoreo de flotas pesqueras a través de Starlink",
+      "Monitoreo de variables de planta (Variables de clima, gestión de energía, etc.)",
+      "Implementación y gestión de SCADA en sistemas VPC",
+      "Implementación de sistemas de monitoreo de variables con enlaces LoRaWAN"
+    ],
+    techTags: ["Starlink en Flotas", "LoRaWAN Industrial", "SCADA Cloud VPC", "Dashboards OEE & Energía", "Telemetría Remota"]
+  },
+  {
+    num: "05",
+    tabLabel: "Alimentos",
+    title: "Experiencia en Industria de Alimentos",
+    category: "Automatización de Alimentos & Recetas Batch",
+    icon: Utensils,
+    desc: "Control riguroso de dosificación, control de estanques de materias primas y aseguramiento de calidad operativa.",
+    items: [
+      "Experiencia en sistemas de control \"tipo batch\" en mezcladoras y dosificadoras de ingredientes",
+      "SCADA de gestión de estanques de materia prima: aceite, chocolates, etc.",
+      "Control de ejes en máquinas",
+      "Sistemas de monitoreo de variables con enlaces LoRaWAN"
+    ],
+    techTags: ["Control Tipo Batch", "SCADA Estanques", "Control de Ejes", "Enlaces LoRaWAN"]
+  },
+  {
+    num: "06",
+    tabLabel: "Manufactura",
+    title: "Experiencia en Manufactura",
+    category: "Motion Control & Sincronización Multieje",
+    icon: Factory,
+    desc: "Especialistas en control cinemático avanzado, sincronización de ejes de alta velocidad y sensórica industrial.",
+    items: [
+      "Control avanzado de sincronización de ejes, cam, gear, etc.",
+      "Expertos en lógica de sensorización: encoders, posicionamiento, peso, inclinación, tensión de bobinado",
+      "Experiencia en sistemas de control de manufactura Siemens y Beckhoff",
+      "Migración de sistemas de control completos en máquinas complejas multieje"
+    ],
+    techTags: ["Siemens & Beckhoff", "Sincronización Cam & Gear", "Sensorización Crítica", "Máquinas Multieje"]
+  },
+  {
+    num: "07",
+    tabLabel: "Multidisciplinarios",
+    title: "Proyectos Integrados Multidisciplinarios",
+    category: "Ingeniería Llave en Mano & Comisionamiento",
+    icon: Layers,
+    desc: "Capacidad de ejecución integral: desde las fases de ingeniería de detalle hasta la puesta en marcha bajo exigentes protocolos industriales.",
+    items: [
+      "Experiencia en implementación de proyectos desde la ingeniería conceptual hasta la puesta en marcha",
+      "Sistemas de control redundantes en comunicación, PLCs y servidores",
+      "Tableros PLC, Servidores, RIO, comisionamiento, ejecución de protocolos, puesta en marcha"
+    ],
+    techTags: ["Ingeniería Conceptual a Detalle", "Control Redundante", "Tableros PLC & RIO", "Protocolos & Puesta en Marcha"]
+  }
+];
+
 export default function Home() {
   const [selectedSolution, setSelectedSolution] = useState<Solution | null>(null);
+  const [activeCaseIndex, setActiveCaseIndex] = useState(0);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [formFeedback, setFormFeedback] = useState('');
@@ -303,34 +433,139 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CASOS DE ÉXITO */}
+      {/* CASOS DE ÉXITO Y EXPERIENCIA */}
       <section id="casos" className="py-24 px-6 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-navy mb-4">Casos de Éxito</h2>
+          <div className="mb-10">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-navy mb-4">Casos de éxito y experiencia</h2>
             <p className="text-slate-600">Experiencia aplicada en control, supervisión, integración y continuidad operacional.</p>
           </div>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              { num: "01", title: "SCADA planta de RILES", desc: "Desarrollo de sistema SCADA para supervisión y operación de planta de tratamiento de RILES.", tech: "Siemens WinCC Unified" },
-              { num: "02", title: "Control Carguío Alto Horno", desc: "Implementación de control y supervisión para operación crítica de carguío en alto horno.", tech: "Siemens S7-1500 · HMI Unified Comfort · SCADA WinCC" },
-              { num: "03", title: "Pesaje, registro y acceso", desc: "Automatización del proceso con trazabilidad, integración operativa y conexión con SAP.", tech: "PLC Siemens · Software atvise" },
-              { num: "04", title: "Integración de tableros", desc: "Desarrollo e integración de solución de control con arquitectura confiable para operación industrial.", tech: "Schneider Electric · Rittal" }
-            ].map((caso, i) => (
-              <div key={i} className="bg-white p-8 border border-slate-200 rounded shadow-sm hover:shadow-md transition-shadow">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-lg font-bold text-navy">{caso.title}</h3>
-                  <span className="text-2xl font-black text-slate-100">{caso.num}</span>
+
+          {/* SELECTOR DE PESTAÑAS (Pills) */}
+          <div className="flex gap-2 overflow-x-auto pb-4 mb-8 scrollbar-thin lg:grid lg:grid-cols-7 lg:gap-3 lg:overflow-visible">
+            {experienceCasesData.map((item, idx) => {
+              const isActive = activeCaseIndex === idx;
+              const TabIcon = item.icon;
+              return (
+                <button
+                  key={item.num}
+                  type="button"
+                  onClick={() => setActiveCaseIndex(idx)}
+                  className={`group shrink-0 flex items-center justify-between lg:flex-col lg:items-start p-3.5 rounded-xl border text-left transition-all duration-200 cursor-pointer ${
+                    isActive
+                      ? 'bg-navy border-navy text-white shadow-md ring-2 ring-cyan/30'
+                      : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100 hover:border-slate-300 shadow-2xs'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5 lg:w-full lg:justify-between mb-0 lg:mb-3">
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
+                      isActive ? 'bg-white/10 text-cyan' : 'bg-slate-50 text-slate-400 group-hover:text-cyan'
+                    }`}>
+                      <TabIcon size={18} strokeWidth={1.8} />
+                    </div>
+                    <span className={`text-[11px] font-mono font-bold px-1.5 py-0.5 rounded ${
+                      isActive ? 'bg-white/15 text-cyan' : 'bg-slate-100 text-slate-400'
+                    }`}>
+                      {item.num}
+                    </span>
+                  </div>
+                  <span className={`text-xs font-bold leading-tight ${
+                    isActive ? 'text-white' : 'text-navy group-hover:text-cyan transition-colors'
+                  }`}>
+                    {item.tabLabel}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* TARJETA PRINCIPAL DEL CASO SELECCIONADO */}
+          {(() => {
+            const activeCase = experienceCasesData[activeCaseIndex];
+            const ActiveIcon = activeCase.icon;
+            return (
+              <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden transition-all duration-300">
+                {/* Header de la tarjeta */}
+                <div className="p-6 md:p-8 border-b border-slate-100 bg-gradient-to-r from-slate-50/70 via-white to-slate-50/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div className="space-y-2">
+                    <div className="inline-flex items-center gap-2 text-cyan font-bold text-xs uppercase tracking-wider">
+                      <span className="p-1.5 rounded-lg bg-cyan/10 text-cyan">
+                        <ActiveIcon size={16} strokeWidth={2} />
+                      </span>
+                      <span>{activeCase.category}</span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-extrabold text-navy">
+                      {activeCase.title}
+                    </h3>
+                    <p className="text-slate-600 text-sm md:text-base max-w-3xl leading-relaxed">
+                      {activeCase.desc}
+                    </p>
+                  </div>
+
+                  <div className="hidden md:flex flex-col items-end shrink-0 pl-6 border-l border-slate-100">
+                    <span className="text-5xl font-black text-slate-200 select-none tracking-tight">
+                      {activeCase.num}
+                    </span>
+                    <span className="text-[10px] uppercase tracking-widest text-slate-400 font-bold">
+                      Sector {activeCase.num} de 07
+                    </span>
+                  </div>
                 </div>
-                <p className="text-slate-600 text-sm mb-6">{caso.desc}</p>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-50 border border-slate-100 rounded text-xs text-slate-500 font-medium">
-                  <span className="w-2 h-2 rounded-full bg-cyan"></span>
-                  {caso.tech}
+
+                {/* Lista de intervenciones y capacidades aplicadas */}
+                <div className="p-6 md:p-8">
+                  <div className="flex items-center gap-3 mb-6">
+                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest shrink-0">
+                      Capacidades y soluciones implementadas ({activeCase.items.length})
+                    </h4>
+                    <div className="h-px flex-1 bg-slate-100"></div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-x-8 gap-y-3.5">
+                    {activeCase.items.map((item, idx) => (
+                      <div 
+                        key={idx} 
+                        className="flex items-start gap-3 p-3 rounded-lg border border-slate-100 bg-slate-50/40 hover:bg-slate-50 hover:border-slate-200 transition-all duration-150"
+                      >
+                        <CheckCircle2 size={18} className="text-emerald shrink-0 mt-0.5" />
+                        <span className="text-slate-700 text-sm leading-relaxed">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Footer con etiquetas tecnológicas y enlace de contacto */}
+                <div className="p-6 md:p-8 bg-slate-50/60 border-t border-slate-100 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                  <div>
+                    <span className="text-[11px] uppercase font-bold text-slate-400 tracking-wider block mb-2.5">
+                      Tecnologías, marcas y protocolos clave:
+                    </span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {activeCase.techTags.map((tag) => (
+                        <div 
+                          key={tag} 
+                          className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-200 rounded-md text-xs text-slate-600 font-medium shadow-2xs hover:border-cyan/40 transition-colors"
+                        >
+                          <span className="w-2 h-2 rounded-full bg-cyan shrink-0"></span>
+                          <span>{tag}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <a 
+                    href="#contacto" 
+                    className="inline-flex items-center gap-2 text-xs font-bold text-navy hover:text-cyan transition-colors self-start lg:self-center shrink-0 group py-2"
+                  >
+                    <span>Consultar por proyectos en {activeCase.tabLabel}</span>
+                    <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                  </a>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })()}
         </div>
       </section>
 
