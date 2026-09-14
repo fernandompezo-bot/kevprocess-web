@@ -172,7 +172,7 @@ const experienceCasesData: ExperienceCase[] = [
       "Dashboard y reportabilidad de producción y mantenimiento (OEE, Energía, consumo materias primas, etc.)",
       "Monitoreo de flotas pesqueras a través de Starlink",
       "Monitoreo de variables de planta (Variables de clima, gestión de energía, etc.)",
-      "Implementación y gestión de SCADA en sistemas VPC",
+      "Implementación y gestión de sistemas SCADA en VPS",
       "Implementación de sistemas de monitoreo de variables con enlaces LoRaWAN"
     ],
     techTags: ["Starlink en Flotas", "LoRaWAN Industrial", "SCADA Cloud VPC", "Dashboards OEE & Energía", "Telemetría Remota"]
